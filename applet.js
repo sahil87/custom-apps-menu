@@ -24,9 +24,8 @@ const AppletDirectory = imports.ui.appletManager.appletMeta[appletUUID].path;
 imports.searchPath.push(AppletDirectory);
 const PopupMenuExtension = imports.popupMenuExtension;
 
-const SettingsFile = AppletDirectory + "/applications.json";
 const AppSys = Cinnamon.AppSystem.get_default();
-
+let SettingsFile;
 
 function MyApplet(orientation) {
     this._init(orientation);
@@ -41,8 +40,16 @@ MyApplet.prototype = {
             this.set_applet_icon_name("emblem-favorite");
             this.set_applet_tooltip("Custom Applications Menu");
 
+            //Select the correct SettingsFile
+            SettingsFile = AppletDirectory + "/applications.json";
+            let SettingsFileOverride = AppletDirectory + "/applications-override.json";
+            let file = Gio.file_new_for_path(SettingsFileOverride);
+            if(file.query_exists(null)) {
+                SettingsFile = SettingsFileOverride;
+            }
+
             // watch settings file for changes
-            let file = Gio.file_new_for_path(SettingsFile);
+            file = Gio.file_new_for_path(SettingsFile);
             this._monitor = file.monitor(Gio.FileMonitorFlags.NONE, null);
             this._monitor.connect('changed', Lang.bind(this, this._on_settingsfile_changed));
 

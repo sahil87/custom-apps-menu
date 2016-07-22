@@ -3,12 +3,13 @@ DESCRIPTION
 This applet adds an icon in the cinnamon panel which toogle a list of applications when you click on the icon.
 This applications list is completly customisable.
 To edit the applications list, right click on the icon and select Edit.
-To know how to edit the setting file, read the following instructions : 
+To know how to edit the setting file, read the following instructions :
 
 
 SETTINGS
 ========
 The applications.json file is a data representation of the Custom Applications Menu.
+This file may also be overridden by applications-override.json which is gitignored in case you want to symlink this outside.
 Each line represent an applications entry.
 
  * desktopFile:
@@ -26,15 +27,17 @@ Each line represent an applications entry.
 
 Special command
 ========
-{ "command":"S" } is used to create a separator
+``{ "command":"S" }`` is used to create a separator
 
 Special entry
 ========
 menu may be used to create a sub-menu:
+```
 { "displayName":"sub-menu", "iconName":"applications-internet", "menu": [
     { "desktopFile":"firefox" },
     { "desktopFile":"filezilla" }
 ]}
+```
 By default the iconName is 'image-missing' and displayName is 'sub-menu'
 
 
