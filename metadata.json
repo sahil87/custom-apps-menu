@@ -1,8 +1,8 @@
 {
-    "uuid": "CustomApplicationsMenu@LLOBERA", 
-    "dangerous": true, 
-    "description": "An applications drop-down list easily customisable", 
-    "name": "Custom Applications Menu", 
-    "version": "2.0", 
-    "last-edited": "1379001428"
+    "uuid": "custom-apps-menu@sahil87",
+    "dangerous": true,
+    "description": "An applications drop-down list easily customisable",
+    "name": "My Custom Applications Menu",
+    "version": "2.0",
+    "icon": "emblem-favorite"
 }
